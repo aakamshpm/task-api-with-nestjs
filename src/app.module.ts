@@ -14,6 +14,7 @@ import { TasksModules } from './tasks/tasks.module';
 import { APP_FILTER, APP_PIPE } from '@nestjs/core';
 import { AllExceptionFilter } from './common/filters/all-exception.filter';
 import { LoggerMiddleware } from './common/middleware/logger.middleware';
+import databaseConfig from './config/database.config';
 
 @Module({
   imports: [
