@@ -24,12 +24,12 @@ export class TasksService {
   async findAll(userId: string) {
     return this.prisma.task.findMany({
       where: { userId },
-      orderedBy: { createdAt: 'desc' },
+      orderBy: { createdAt: 'desc' },
     });
   }
 
   async findOne(id: string, userId: string) {
-    const task = await this.prisma.task.findUnique({ where: id });
+    const task = await this.prisma.task.findUnique({ where: { id } });
 
     if (!task) throw new NotFoundException('Task not found');
 
@@ -45,7 +45,7 @@ export class TasksService {
       where: { id },
       data: {
         ...updateTaskDto,
-        dueData: updateTaskDto.dueDate ? new Date(updateTaskDto.dueDate) : null,
+        dueDate: updateTaskDto.dueDate ? new Date(updateTaskDto.dueDate) : null,
       },
     });
   }
